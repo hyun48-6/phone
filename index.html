@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>핸드폰 틀 테스트</title>
+<style>
+  body {
+    margin: 0;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: -apple-system, sans-serif;
+  }
+
+  .device {
+    position: relative;
+    width: 390px;
+    height: 844px;
+    border-radius: 54px;
+    overflow: hidden;
+    background: #000;
+    box-shadow:
+      0 0 0 11px #1b1b1d,
+      0 0 0 13px #3a3a3e,
+      0 40px 80px rgba(0,0,0,.5);
+  }
+
+  .statusbar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 28px 0 36px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    z-index: 10;
+  }
+
+  .screens {
+    position: absolute;
+    inset: 0;
+    background: #f2f2f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #888;
+    font-size: 18px;
+  }
+
+  .homebar {
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 8px;
+  }
+
+  .homebar i {
+    width: 136px;
+    height: 5px;
+    background: #111;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="device">
+    <div class="statusbar">
+      <span>11:59</span>
+      <span>🔋</span>
+    </div>
+    <div class="screens">여기가 화면 영역입니다</div>
+    <div class="homebar"><i></i></div>
+  </div>
+
+</body>
+</html>
