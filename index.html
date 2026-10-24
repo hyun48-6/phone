@@ -140,120 +140,132 @@
     text-shadow: 0 1px 4px rgba(0,0,0,0.7);
     font-weight: 500;
     text-align: center;
-    max-width: 70px;
+    max-width: 72px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  /* ===== 진짜 앱 아이콘 스타일 ===== */
+  /* ========== 아이콘들 ========== */
 
-  /* 카카오톡 */
+  /* 카카오톡 - 더 정확한 버전 */
   .kakao {
     background: #FEE500;
   }
-  .kakao::before {
-    content: "";
-    width: 28px; height: 24px;
+  .kakao-inner {
+    width: 32px;
+    height: 28px;
     background: #3C1E1E;
-    border-radius: 14px 14px 14px 4px;
+    border-radius: 16px 16px 16px 5px;
     position: relative;
   }
-  .kakao::after {
+  .kakao-inner::before {
     content: "";
     position: absolute;
-    width: 6px; height: 6px;
-    background: #3C1E1E;
+    width: 5px; height: 5px;
+    background: #FEE500;
     border-radius: 50%;
-    bottom: 14px; left: 16px;
-    box-shadow: 10px 0 0 #3C1E1E, 20px 0 0 #3C1E1E;
+    top: 11px; left: 7px;
+    box-shadow: 9px 0 #FEE500, 18px 0 #FEE500;
   }
 
-  /* 인스타그램 */
+  /* 인스타그램 (요청대로 그대로) */
   .insta {
     background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
   }
   .insta::before {
     content: "";
-    width: 28px; height: 28px;
-    border: 3px solid #fff;
-    border-radius: 8px;
+    width: 26px; height: 26px;
+    border: 2.8px solid #fff;
+    border-radius: 7px;
   }
   .insta::after {
     content: "";
     position: absolute;
-    width: 12px; height: 12px;
-    border: 3px solid #fff;
+    width: 11px; height: 11px;
+    border: 2.8px solid #fff;
     border-radius: 50%;
   }
 
-  /* 전화 */
+  /* 전화 - 아이폰 기본 전화 아이콘 */
   .phone {
-    background: #34C759;
+    background: #30D158;
   }
-  .phone::before {
-    content: "";
-    width: 22px; height: 22px;
-    border: 3.5px solid #fff;
-    border-radius: 50% 50% 50% 4px;
-    transform: rotate(-45deg);
+  .phone-icon {
+    width: 26px;
+    height: 26px;
+    border: 3.2px solid #fff;
+    border-radius: 50% 50% 50% 6px;
+    transform: rotate(135deg);
   }
 
-  /* 메시지 */
+  /* 메시지 - 아이폰 기본 메시지 아이콘 */
   .message {
-    background: #34C759;
+    background: #30D158;
   }
-  .message::before {
-    content: "";
-    width: 28px; height: 22px;
+  .message-icon {
+    width: 30px;
+    height: 24px;
     background: #fff;
-    border-radius: 12px 12px 12px 4px;
+    border-radius: 13px 13px 13px 4px;
+    position: relative;
   }
 
-  /* 카메라 */
+  /* 카메라 - 아이폰 기본 카메라 아이콘 */
   .camera {
-    background: linear-gradient(#8E8E93, #636366);
+    background: linear-gradient(#A8A8AD, #6C6C70);
   }
-  .camera::before {
-    content: "";
-    width: 26px; height: 20px;
-    border: 3px solid #fff;
+  .camera-body {
+    width: 28px;
+    height: 20px;
+    border: 2.8px solid #fff;
     border-radius: 5px;
+    position: relative;
   }
-  .camera::after {
+  .camera-body::after {
     content: "";
     position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
     width: 10px; height: 10px;
     border: 2.5px solid #fff;
     border-radius: 50%;
   }
+  .camera-dot {
+    position: absolute;
+    top: 11px; right: 11px;
+    width: 5px; height: 5px;
+    background: #fff;
+    border-radius: 50%;
+  }
 
-  /* 캘린더 */
+  /* 캘린더 - 아이폰 기본 캘린더 */
   .calendar {
     background: #fff;
     flex-direction: column;
+    padding-top: 2px;
   }
   .calendar .cal-day {
     font-size: 10px;
     color: #FF3B30;
     font-weight: 700;
-    margin-top: 7px;
+    letter-spacing: 0.3px;
   }
   .calendar .cal-date {
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 300;
     color: #000;
-    line-height: 1;
+    line-height: 1.05;
   }
 
   /* TheDayBefore */
   .theday {
-    background: linear-gradient(135deg, #FF6B9D, #C44569);
+    background: linear-gradient(145deg, #FF6B9D, #C44569);
   }
-  .theday::before {
-    content: "♡";
-    font-size: 30px;
+  .theday-heart {
+    font-size: 28px;
     color: #fff;
+    line-height: 1;
   }
 
   .homebar {
@@ -296,26 +308,46 @@
     <!-- 홈화면 -->
     <div class="home" id="home">
       <div class="app-grid">
+        <!-- 카카오톡 -->
         <div class="app">
-          <div class="app-icon kakao"></div>
+          <div class="app-icon kakao">
+            <div class="kakao-inner"></div>
+          </div>
           <div class="app-name">카카오톡</div>
         </div>
+
+        <!-- 인스타 (그대로) -->
         <div class="app">
           <div class="app-icon insta"></div>
           <div class="app-name">인스타</div>
         </div>
+
+        <!-- 전화 -->
         <div class="app">
-          <div class="app-icon phone"></div>
+          <div class="app-icon phone">
+            <div class="phone-icon"></div>
+          </div>
           <div class="app-name">전화</div>
         </div>
+
+        <!-- 메시지 -->
         <div class="app">
-          <div class="app-icon message"></div>
+          <div class="app-icon message">
+            <div class="message-icon"></div>
+          </div>
           <div class="app-name">메시지</div>
         </div>
+
+        <!-- 카메라 -->
         <div class="app">
-          <div class="app-icon camera"></div>
+          <div class="app-icon camera">
+            <div class="camera-body"></div>
+            <div class="camera-dot"></div>
+          </div>
           <div class="app-name">카메라</div>
         </div>
+
+        <!-- 캘린더 -->
         <div class="app">
           <div class="app-icon calendar">
             <div class="cal-day" id="calDay">토</div>
@@ -323,8 +355,12 @@
           </div>
           <div class="app-name">캘린더</div>
         </div>
+
+        <!-- TheDayBefore -->
         <div class="app">
-          <div class="app-icon theday"></div>
+          <div class="app-icon theday">
+            <div class="theday-heart">♡</div>
+          </div>
           <div class="app-name">TheDayBefore</div>
         </div>
       </div>
