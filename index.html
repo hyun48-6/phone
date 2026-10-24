@@ -42,10 +42,85 @@
     font-size: 15px;
     z-index: 30;
   }
+
   .sb-icons {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
+  }
+
+  /* 신호 */
+  .signal {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.5px;
+    height: 12px;
+  }
+  .signal i {
+    display: block;
+    width: 3px;
+    background: #fff;
+    border-radius: 1px;
+  }
+  .signal i:nth-child(1) { height: 4px; }
+  .signal i:nth-child(2) { height: 6px; }
+  .signal i:nth-child(3) { height: 8px; }
+  .signal i:nth-child(4) { height: 11px; }
+
+  /* 와이파이 */
+  .wifi {
+    width: 15px;
+    height: 11px;
+    position: relative;
+  }
+  .wifi::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    margin: auto;
+    width: 6px;
+    height: 6px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    transform: rotate(-45deg);
+  }
+  .wifi::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 1px;
+    margin: auto;
+    width: 3px;
+    height: 3px;
+    background: #fff;
+    border-radius: 50%;
+  }
+
+  /* 배터리 */
+  .battery {
+    width: 24px;
+    height: 11px;
+    border: 1.5px solid #fff;
+    border-radius: 3px;
+    position: relative;
+    padding: 1.5px;
+  }
+  .battery::after {
+    content: "";
+    position: absolute;
+    right: -4px;
+    top: 3px;
+    width: 2px;
+    height: 5px;
+    background: #fff;
+    border-radius: 0 1px 1px 0;
+  }
+  .battery-level {
+    height: 100%;
+    width: 75%;
+    background: #fff;
+    border-radius: 1px;
   }
 
   .screens { position: absolute; inset: 0; }
@@ -85,7 +160,7 @@
     margin-top: 14px;
     font-size: 15px;
     font-weight: 600;
-    opacity: 0.9;
+    opacity: 0.95;
     background: rgba(0,0,0,0.28);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -128,6 +203,7 @@
     display: flex;
     gap: 18px;
     margin-bottom: 40px;
+    transition: transform 0.15s;
   }
   .dots span {
     width: 13px;
@@ -160,7 +236,7 @@
     background: rgba(255,255,255,0.35);
   }
 
-  /* 홈 화면 (잠금 해제 후) */
+  /* 홈 화면 */
   .home {
     position: absolute;
     inset: 0;
@@ -187,28 +263,25 @@
 
 <div class="device">
   <!-- 상태바 -->
-<div class="statusbar">
-  <span id="sbTime">--:--</span>
-  <div class="sb-icons">
-    <!-- 신호 -->
-    <div class="signal">
-      <i></i><i></i><i></i><i></i>
-    </div>
-    <!-- 와이파이 -->
-    <div class="wifi"></div>
-    <!-- 배터리 -->
-    <div class="battery">
-      <div class="battery-level"></div>
+  <div class="statusbar">
+    <span id="sbTime">--:--</span>
+    <div class="sb-icons">
+      <div class="signal">
+        <i></i><i></i><i></i><i></i>
+      </div>
+      <div class="wifi"></div>
+      <div class="battery">
+        <div class="battery-level"></div>
+      </div>
     </div>
   </div>
-</div>
 
   <div class="screens">
     <!-- 잠금화면 -->
     <div class="lockscreen" id="lockscreen">
       <div class="lock-time" id="time">--:--</div>
       <div class="lock-date" id="date">--월 --일 ---</div>
-      <div class="dday" id="dday">D+0</div>
+      <div class="dday" id="dday">♡ D+0</div>
       <div class="lock-bottom">위로 밀어서 잠금 해제</div>
     </div>
 
@@ -252,12 +325,11 @@
     document.getElementById("date").textContent = `${month}월 ${date}일 ${days[now.getDay()]}`;
   }
 
-  // 디데이 계산 (2025-05-01을 1일로)
+  // 디데이 계산 (2025-05-01을 1일로) + ♡ 표시
   function updateDday() {
     const base = new Date(BASE_DATE + "T00:00:00+09:00");
     const today = getKoreaTime();
     
-    // 날짜만 비교하기 위해 시간 제거
     const baseDay = new Date(base.getFullYear(), base.getMonth(), base.getDate());
     const todayDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     
@@ -266,14 +338,12 @@
     
     const el = document.getElementById("dday");
     
-    // 2025-05-01을 1일로 설정 → 그날은 D+0 또는 "1일"로 표현 가능
-    // 보통 D-Day 방식으로 표시
     if (diffDays === 0) {
-      el.textContent = "D-Day";
+      el.textContent = "♡ D-Day";
     } else if (diffDays > 0) {
-      el.textContent = `D+${diffDays}`;
+      el.textContent = `♡ D+${diffDays}`;
     } else {
-      el.textContent = `D${diffDays}`;
+      el.textContent = `♡ D${diffDays}`;
     }
   }
 
@@ -309,14 +379,12 @@
   const keypad = document.getElementById("keypad");
   let input = "";
 
-  // 1~9
   for (let i = 1; i <= 9; i++) {
     const btn = document.createElement("button");
     btn.textContent = i;
     btn.onclick = () => press(String(i));
     keypad.appendChild(btn);
   }
-  // 빈칸 + 0 + 빈칸
   keypad.appendChild(document.createElement("div")); // 빈 공간
   const zero = document.createElement("button");
   zero.textContent = "0";
@@ -332,15 +400,12 @@
     if (input.length === 4) {
       setTimeout(() => {
         if (input === PASSWORD) {
-          // 성공
           document.getElementById("passcode").classList.remove("show");
           lock.classList.add("hide");
           document.getElementById("home").classList.add("show");
         } else {
-          // 실패
           input = "";
           updateDots();
-          // 살짝 흔들림 효과
           const dots = document.getElementById("dots");
           dots.style.transform = "translateX(-8px)";
           setTimeout(() => dots.style.transform = "translateX(8px)", 80);
