@@ -12,7 +12,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
   }
 
   .device {
@@ -22,13 +22,10 @@
     border-radius: 55px;
     overflow: hidden;
     background: #000;
-    box-shadow:
-      0 0 0 12px #1c1c1e,
-      0 0 0 14px #3a3a3c,
-      0 40px 80px rgba(0,0,0,0.6);
+    box-shadow: 0 0 0 12px #1c1c1e, 0 0 0 14px #3a3a3c, 0 40px 80px rgba(0,0,0,0.6);
   }
 
-  /* 상태바 */
+  /* ===== 상태바 ===== */
   .statusbar {
     position: absolute;
     top: 0; left: 0; right: 0;
@@ -36,17 +33,17 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 0 28px 10px 32px;
+    padding: 0 26px 11px 32px;
     color: #fff;
     font-weight: 600;
     font-size: 15px;
-    z-index: 30;
+    z-index: 50;
   }
 
   .sb-icons {
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 6px;
   }
 
   /* 신호 */
@@ -54,65 +51,62 @@
     display: flex;
     align-items: flex-end;
     gap: 1.5px;
-    height: 12px;
+    height: 11px;
   }
   .signal i {
-    display: block;
     width: 3px;
     background: #fff;
     border-radius: 1px;
+    display: block;
   }
-  .signal i:nth-child(1) { height: 4px; }
-  .signal i:nth-child(2) { height: 6px; }
-  .signal i:nth-child(3) { height: 8px; }
-  .signal i:nth-child(4) { height: 11px; }
+  .signal i:nth-child(1) { height: 3.5px; }
+  .signal i:nth-child(2) { height: 5.5px; }
+  .signal i:nth-child(3) { height: 7.5px; }
+  .signal i:nth-child(4) { height: 10px; }
 
   /* 와이파이 */
   .wifi {
-    width: 15px;
-    height: 11px;
+    width: 14px;
+    height: 10px;
     position: relative;
   }
   .wifi::before {
     content: "";
     position: absolute;
-    left: 0; right: 0; bottom: 0;
-    margin: auto;
-    width: 6px;
-    height: 6px;
+    left: 50%; bottom: 0;
+    transform: translateX(-50%) rotate(-45deg);
+    width: 5px; height: 5px;
     border: 2px solid #fff;
     border-radius: 50%;
     border-bottom-color: transparent;
     border-left-color: transparent;
-    transform: rotate(-45deg);
   }
   .wifi::after {
     content: "";
     position: absolute;
-    left: 0; right: 0; bottom: 1px;
-    margin: auto;
-    width: 3px;
-    height: 3px;
+    left: 50%; bottom: 1px;
+    transform: translateX(-50%);
+    width: 2.5px; height: 2.5px;
     background: #fff;
     border-radius: 50%;
   }
 
   /* 배터리 */
   .battery {
-    width: 24px;
-    height: 11px;
-    border: 1.5px solid #fff;
-    border-radius: 3px;
+    width: 23px;
+    height: 10.5px;
+    border: 1.4px solid #fff;
+    border-radius: 2.5px;
+    padding: 1.3px;
     position: relative;
-    padding: 1.5px;
   }
   .battery::after {
     content: "";
     position: absolute;
-    right: -4px;
-    top: 3px;
-    width: 2px;
-    height: 5px;
+    right: -3.5px;
+    top: 2.8px;
+    width: 1.8px;
+    height: 4.5px;
     background: #fff;
     border-radius: 0 1px 1px 0;
   }
@@ -125,7 +119,7 @@
 
   .screens { position: absolute; inset: 0; }
 
-  /* 잠금화면 */
+  /* ===== 잠금화면 ===== */
   .lockscreen {
     position: absolute;
     inset: 0;
@@ -134,8 +128,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 120px;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+    padding-top: 118px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
     transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
   .lockscreen.hide {
@@ -143,74 +137,69 @@
   }
 
   .lock-time {
-    font-size: 88px;
+    font-size: 86px;
     font-weight: 300;
-    letter-spacing: -3px;
+    letter-spacing: -2.5px;
     line-height: 1;
   }
 
   .lock-date {
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 500;
-    margin-top: 6px;
-    opacity: 0.95;
+    margin-top: 5px;
   }
 
   .dday {
-    margin-top: 14px;
-    font-size: 15px;
+    margin-top: 13px;
+    font-size: 14.5px;
     font-weight: 600;
-    opacity: 0.95;
-    background: rgba(0,0,0,0.28);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 5px 14px;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 4px 13px;
     border-radius: 20px;
   }
 
   .lock-bottom {
     position: absolute;
-    bottom: 48px;
-    font-size: 14px;
+    bottom: 46px;
+    font-size: 13.5px;
     font-weight: 500;
     opacity: 0.85;
-    letter-spacing: 0.3px;
   }
 
-  /* 비밀번호 화면 */
+  /* ===== 비밀번호 ===== */
   .passcode {
     position: absolute;
     inset: 0;
     background: rgba(0,0,0,0.55);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: #fff;
-    z-index: 20;
+    z-index: 40;
   }
   .passcode.show { display: flex; }
 
   .passcode-title {
-    font-size: 17px;
-    font-weight: 500;
-    margin-bottom: 28px;
+    font-size: 16.5px;
+    margin-bottom: 26px;
   }
 
   .dots {
     display: flex;
-    gap: 18px;
-    margin-bottom: 40px;
+    gap: 16px;
+    margin-bottom: 36px;
     transition: transform 0.15s;
   }
   .dots span {
-    width: 13px;
-    height: 13px;
-    border: 1.8px solid #fff;
+    width: 12px;
+    height: 12px;
+    border: 1.7px solid #fff;
     border-radius: 50%;
-    transition: background 0.15s;
   }
   .dots span.fill {
     background: #fff;
@@ -218,25 +207,22 @@
 
   .keypad {
     display: grid;
-    grid-template-columns: repeat(3, 78px);
-    gap: 16px 22px;
+    grid-template-columns: repeat(3, 76px);
+    gap: 15px 20px;
   }
   .keypad button {
-    width: 78px;
-    height: 78px;
+    width: 76px;
+    height: 76px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.17);
     color: #fff;
-    font-size: 32px;
-    font-weight: 400;
+    font-size: 30px;
     border: none;
-    cursor: pointer;
   }
   .keypad button:active {
-    background: rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.32);
   }
 
-  /* 홈 화면 */
   .home {
     position: absolute;
     inset: 0;
@@ -247,15 +233,14 @@
 
   .homebar {
     position: absolute;
-    bottom: 10px;
+    bottom: 9px;
     left: 50%;
     transform: translateX(-50%);
-    width: 134px;
+    width: 130px;
     height: 5px;
     background: #fff;
     border-radius: 3px;
-    opacity: 0.9;
-    z-index: 25;
+    z-index: 30;
   }
 </style>
 </head>
@@ -266,13 +251,9 @@
   <div class="statusbar">
     <span id="sbTime">--:--</span>
     <div class="sb-icons">
-      <div class="signal">
-        <i></i><i></i><i></i><i></i>
-      </div>
+      <div class="signal"><i></i><i></i><i></i><i></i></div>
       <div class="wifi"></div>
-      <div class="battery">
-        <div class="battery-level"></div>
-      </div>
+      <div class="battery"><div class="battery-level"></div></div>
     </div>
   </div>
 
@@ -285,7 +266,7 @@
       <div class="lock-bottom">위로 밀어서 잠금 해제</div>
     </div>
 
-    <!-- 비밀번호 입력 -->
+    <!-- 비밀번호 -->
     <div class="passcode" id="passcode">
       <div class="passcode-title">암호 입력</div>
       <div class="dots" id="dots">
@@ -294,7 +275,7 @@
       <div class="keypad" id="keypad"></div>
     </div>
 
-    <!-- 홈 화면 -->
+    <!-- 홈화면 -->
     <div class="home" id="home"></div>
   </div>
 
@@ -303,89 +284,70 @@
 
 <script>
   const PASSWORD = "0501";
-  const BASE_DATE = "2025-05-01"; // 이 날짜를 1일로 설정
+  const BASE_DATE = "2025-05-01";
 
-  // 대한민국 시간으로 현재 시각 가져오기
   function getKoreaTime() {
     return new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Seoul" }));
   }
 
-  // 시간 & 날짜 업데이트
   function updateTime() {
     const now = getKoreaTime();
     const h = String(now.getHours()).padStart(2, "0");
     const m = String(now.getMinutes()).padStart(2, "0");
-    
     document.getElementById("time").textContent = `${h}:${m}`;
     document.getElementById("sbTime").textContent = `${h}:${m}`;
 
-    const days = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
-    const month = now.getMonth() + 1;
-    const date = now.getDate();
-    document.getElementById("date").textContent = `${month}월 ${date}일 ${days[now.getDay()]}`;
+    const days = ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"];
+    document.getElementById("date").textContent = 
+      `${now.getMonth()+1}월 ${now.getDate()}일 ${days[now.getDay()]}`;
   }
 
-  // 디데이 계산 (2025-05-01을 1일로) + ♡ 표시
   function updateDday() {
     const base = new Date(BASE_DATE + "T00:00:00+09:00");
     const today = getKoreaTime();
-    
     const baseDay = new Date(base.getFullYear(), base.getMonth(), base.getDate());
     const todayDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    
-    const diffTime = todayDay - baseDay;
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    
+    const diffDays = Math.floor((todayDay - baseDay) / (1000*60*60*24));
+
     const el = document.getElementById("dday");
-    
-    if (diffDays === 0) {
-      el.textContent = "♡ D-Day";
-    } else if (diffDays > 0) {
-      el.textContent = `♡ D+${diffDays}`;
-    } else {
-      el.textContent = `♡ D${diffDays}`;
-    }
+    if (diffDays === 0) el.textContent = "♡ D-Day";
+    else if (diffDays > 0) el.textContent = `♡ D+${diffDays}`;
+    else el.textContent = `♡ D${diffDays}`;
   }
 
   updateTime();
   updateDday();
   setInterval(updateTime, 1000);
 
-  // 위로 밀기 (스와이프)
+  // 스와이프
   let startY = 0;
   const lock = document.getElementById("lockscreen");
-
-  lock.addEventListener("touchstart", e => {
-    startY = e.touches[0].clientY;
-  }, { passive: true });
-
+  lock.addEventListener("touchstart", e => startY = e.touches[0].clientY, {passive:true});
   lock.addEventListener("touchend", e => {
-    const endY = e.changedTouches[0].clientY;
-    if (startY - endY > 70) {
+    if (startY - e.changedTouches[0].clientY > 70) {
       document.getElementById("passcode").classList.add("show");
     }
   });
 
-  // 마우스 드래그도 지원 (PC 테스트용)
-  let mouseStartY = 0;
-  lock.addEventListener("mousedown", e => mouseStartY = e.clientY);
+  // PC용
+  let mouseY = 0;
+  lock.addEventListener("mousedown", e => mouseY = e.clientY);
   lock.addEventListener("mouseup", e => {
-    if (mouseStartY - e.clientY > 70) {
+    if (mouseY - e.clientY > 70) {
       document.getElementById("passcode").classList.add("show");
     }
   });
 
-  // 비밀번호 키패드 생성
+  // 키패드
   const keypad = document.getElementById("keypad");
   let input = "";
-
-  for (let i = 1; i <= 9; i++) {
-    const btn = document.createElement("button");
-    btn.textContent = i;
-    btn.onclick = () => press(String(i));
-    keypad.appendChild(btn);
+  for (let i=1; i<=9; i++) {
+    const b = document.createElement("button");
+    b.textContent = i;
+    b.onclick = () => press(String(i));
+    keypad.appendChild(b);
   }
-  keypad.appendChild(document.createElement("div")); // 빈 공간
+  keypad.appendChild(document.createElement("div"));
   const zero = document.createElement("button");
   zero.textContent = "0";
   zero.onclick = () => press("0");
@@ -395,8 +357,9 @@
   function press(n) {
     if (input.length >= 4) return;
     input += n;
-    updateDots();
-
+    document.querySelectorAll("#dots span").forEach((d,i) => {
+      d.classList.toggle("fill", i < input.length);
+    });
     if (input.length === 4) {
       setTimeout(() => {
         if (input === PASSWORD) {
@@ -405,21 +368,14 @@
           document.getElementById("home").classList.add("show");
         } else {
           input = "";
-          updateDots();
+          document.querySelectorAll("#dots span").forEach(d => d.classList.remove("fill"));
           const dots = document.getElementById("dots");
-          dots.style.transform = "translateX(-8px)";
-          setTimeout(() => dots.style.transform = "translateX(8px)", 80);
-          setTimeout(() => dots.style.transform = "translateX(0)", 160);
+          dots.style.transform = "translateX(-6px)";
+          setTimeout(() => dots.style.transform = "translateX(6px)", 70);
+          setTimeout(() => dots.style.transform = "translateX(0)", 140);
         }
-      }, 180);
+      }, 150);
     }
-  }
-
-  function updateDots() {
-    const dots = document.querySelectorAll("#dots span");
-    dots.forEach((d, i) => {
-      d.classList.toggle("fill", i < input.length);
-    });
   }
 </script>
 </body>
