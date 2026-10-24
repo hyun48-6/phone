@@ -27,20 +27,11 @@
 
   /* 상태바 */
   .statusbar {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 54px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding: 0 26px 11px 32px;
-    color: #fff;
-    font-weight: 600;
-    font-size: 15px;
-    z-index: 50;
+    position: absolute; top: 0; left: 0; right: 0; height: 54px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    padding: 0 26px 11px 32px; color: #fff; font-weight: 600; font-size: 15px; z-index: 50;
   }
   .sb-icons { display: flex; align-items: center; gap: 6px; }
-
   .signal { display: flex; align-items: flex-end; gap: 1.5px; height: 11px; }
   .signal i { width: 3px; background: #fff; border-radius: 1px; display: block; }
   .signal i:nth-child(1){height:3.5px} .signal i:nth-child(2){height:5.5px}
@@ -75,14 +66,11 @@
   .lockscreen {
     position: absolute; inset: 0;
     background: url('IMG_5280.jpeg') center/cover no-repeat;
-    color: #fff;
-    display: flex; flex-direction: column; align-items: center;
-    padding-top: 118px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    color: #fff; display: flex; flex-direction: column; align-items: center;
+    padding-top: 118px; text-shadow: 0 2px 10px rgba(0,0,0,0.4);
     transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
   .lockscreen.hide { transform: translateY(-110%); }
-
   .lock-time { font-size: 86px; font-weight: 300; letter-spacing: -2.5px; line-height: 1; }
   .lock-date { font-size: 19px; font-weight: 500; margin-top: 5px; }
   .dday {
@@ -116,57 +104,157 @@
   .home {
     position: absolute; inset: 0;
     background: url('IMG_5280.jpeg') center/cover no-repeat;
-    display: none;
-    padding-top: 70px;
+    display: none; padding-top: 72px;
   }
   .home.show { display: block; }
 
   .app-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 22px 12px;
-    padding: 20px 22px 0;
+    gap: 24px 10px;
+    padding: 18px 20px 0;
   }
 
   .app {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
   }
 
   .app-icon {
-    width: 62px;
-    height: 62px;
-    border-radius: 15px;
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
-    color: #fff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.28);
+    position: relative;
     overflow: hidden;
   }
 
   .app-name {
     font-size: 11px;
     color: #fff;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.7);
     font-weight: 500;
     text-align: center;
+    max-width: 70px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  /* 앱 색상 */
-  .kakao   { background: #FEE500; color: #3C1E1E; font-size: 26px; font-weight: 800; }
-  .insta   { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-  .phone   { background: #34C759; }
-  .message { background: #34C759; }
-  .camera  { background: #8E8E93; }
-  .calendar{ background: #FFFFFF; color: #FF3B30; flex-direction: column; font-size: 11px; }
-  .theday  { background: linear-gradient(135deg, #FF6B9D, #C44569); }
+  /* ===== 진짜 앱 아이콘 스타일 ===== */
 
-  .calendar .cal-day { font-size: 10px; color: #FF3B30; font-weight: 600; margin-top: 6px; }
-  .calendar .cal-date { font-size: 26px; font-weight: 300; color: #000; line-height: 1; }
+  /* 카카오톡 */
+  .kakao {
+    background: #FEE500;
+  }
+  .kakao::before {
+    content: "";
+    width: 28px; height: 24px;
+    background: #3C1E1E;
+    border-radius: 14px 14px 14px 4px;
+    position: relative;
+  }
+  .kakao::after {
+    content: "";
+    position: absolute;
+    width: 6px; height: 6px;
+    background: #3C1E1E;
+    border-radius: 50%;
+    bottom: 14px; left: 16px;
+    box-shadow: 10px 0 0 #3C1E1E, 20px 0 0 #3C1E1E;
+  }
+
+  /* 인스타그램 */
+  .insta {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  }
+  .insta::before {
+    content: "";
+    width: 28px; height: 28px;
+    border: 3px solid #fff;
+    border-radius: 8px;
+  }
+  .insta::after {
+    content: "";
+    position: absolute;
+    width: 12px; height: 12px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+  }
+
+  /* 전화 */
+  .phone {
+    background: #34C759;
+  }
+  .phone::before {
+    content: "";
+    width: 22px; height: 22px;
+    border: 3.5px solid #fff;
+    border-radius: 50% 50% 50% 4px;
+    transform: rotate(-45deg);
+  }
+
+  /* 메시지 */
+  .message {
+    background: #34C759;
+  }
+  .message::before {
+    content: "";
+    width: 28px; height: 22px;
+    background: #fff;
+    border-radius: 12px 12px 12px 4px;
+  }
+
+  /* 카메라 */
+  .camera {
+    background: linear-gradient(#8E8E93, #636366);
+  }
+  .camera::before {
+    content: "";
+    width: 26px; height: 20px;
+    border: 3px solid #fff;
+    border-radius: 5px;
+  }
+  .camera::after {
+    content: "";
+    position: absolute;
+    width: 10px; height: 10px;
+    border: 2.5px solid #fff;
+    border-radius: 50%;
+  }
+
+  /* 캘린더 */
+  .calendar {
+    background: #fff;
+    flex-direction: column;
+  }
+  .calendar .cal-day {
+    font-size: 10px;
+    color: #FF3B30;
+    font-weight: 700;
+    margin-top: 7px;
+  }
+  .calendar .cal-date {
+    font-size: 28px;
+    font-weight: 300;
+    color: #000;
+    line-height: 1;
+  }
+
+  /* TheDayBefore */
+  .theday {
+    background: linear-gradient(135deg, #FF6B9D, #C44569);
+  }
+  .theday::before {
+    content: "♡";
+    font-size: 30px;
+    color: #fff;
+  }
 
   .homebar {
     position: absolute; bottom: 9px; left: 50%;
@@ -178,7 +266,6 @@
 <body>
 
 <div class="device">
-  <!-- 상태바 -->
   <div class="statusbar">
     <span id="sbTime">--:--</span>
     <div class="sb-icons">
@@ -209,27 +296,24 @@
     <!-- 홈화면 -->
     <div class="home" id="home">
       <div class="app-grid">
-        <!-- 1행 -->
         <div class="app">
-          <div class="app-icon kakao">T</div>
+          <div class="app-icon kakao"></div>
           <div class="app-name">카카오톡</div>
         </div>
         <div class="app">
-          <div class="app-icon insta">📷</div>
+          <div class="app-icon insta"></div>
           <div class="app-name">인스타</div>
         </div>
         <div class="app">
-          <div class="app-icon phone">📞</div>
+          <div class="app-icon phone"></div>
           <div class="app-name">전화</div>
         </div>
         <div class="app">
-          <div class="app-icon message">💬</div>
+          <div class="app-icon message"></div>
           <div class="app-name">메시지</div>
         </div>
-
-        <!-- 2행 -->
         <div class="app">
-          <div class="app-icon camera">📸</div>
+          <div class="app-icon camera"></div>
           <div class="app-name">카메라</div>
         </div>
         <div class="app">
@@ -240,7 +324,7 @@
           <div class="app-name">캘린더</div>
         </div>
         <div class="app">
-          <div class="app-icon theday">♡</div>
+          <div class="app-icon theday"></div>
           <div class="app-name">TheDayBefore</div>
         </div>
       </div>
@@ -270,7 +354,6 @@
     document.getElementById("date").textContent = 
       `${now.getMonth()+1}월 ${now.getDate()}일 ${days[now.getDay()]}`;
 
-    // 캘린더 아이콘 날짜 업데이트
     document.getElementById("calDay").textContent = shortDays[now.getDay()];
     document.getElementById("calDate").textContent = now.getDate();
   }
@@ -292,7 +375,6 @@
   updateDday();
   setInterval(updateTime, 1000);
 
-  // 스와이프
   let startY = 0;
   const lock = document.getElementById("lockscreen");
   lock.addEventListener("touchstart", e => startY = e.touches[0].clientY, {passive:true});
@@ -310,7 +392,6 @@
     }
   });
 
-  // 키패드
   const keypad = document.getElementById("keypad");
   let input = "";
   for (let i=1; i<=9; i++) {
@@ -329,9 +410,7 @@
   function press(n) {
     if (input.length >= 4) return;
     input += n;
-    document.querySelectorAll("#dots span").forEach((d,i) => {
-      d.classList.toggle("fill", i < input.length);
-    });
+    document.querySelectorAll("#dots span").forEach((d,i) => d.classList.toggle("fill", i < input.length));
     if (input.length === 4) {
       setTimeout(() => {
         if (input === PASSWORD) {
