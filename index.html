@@ -25,7 +25,7 @@
     box-shadow: 0 0 0 12px #1c1c1e, 0 0 0 14px #3a3a3c, 0 40px 80px rgba(0,0,0,0.6);
   }
 
-  /* ===== 상태바 ===== */
+  /* 상태바 */
   .statusbar {
     position: absolute;
     top: 0; left: 0; right: 0;
@@ -39,208 +39,139 @@
     font-size: 15px;
     z-index: 50;
   }
+  .sb-icons { display: flex; align-items: center; gap: 6px; }
 
-  .sb-icons {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
+  .signal { display: flex; align-items: flex-end; gap: 1.5px; height: 11px; }
+  .signal i { width: 3px; background: #fff; border-radius: 1px; display: block; }
+  .signal i:nth-child(1){height:3.5px} .signal i:nth-child(2){height:5.5px}
+  .signal i:nth-child(3){height:7.5px} .signal i:nth-child(4){height:10px}
 
-  /* 신호 */
-  .signal {
-    display: flex;
-    align-items: flex-end;
-    gap: 1.5px;
-    height: 11px;
-  }
-  .signal i {
-    width: 3px;
-    background: #fff;
-    border-radius: 1px;
-    display: block;
-  }
-  .signal i:nth-child(1) { height: 3.5px; }
-  .signal i:nth-child(2) { height: 5.5px; }
-  .signal i:nth-child(3) { height: 7.5px; }
-  .signal i:nth-child(4) { height: 10px; }
-
-  /* 와이파이 */
-  .wifi {
-    width: 14px;
-    height: 10px;
-    position: relative;
-  }
+  .wifi { width: 14px; height: 10px; position: relative; }
   .wifi::before {
-    content: "";
-    position: absolute;
-    left: 50%; bottom: 0;
-    transform: translateX(-50%) rotate(-45deg);
-    width: 5px; height: 5px;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    border-bottom-color: transparent;
-    border-left-color: transparent;
+    content:""; position:absolute; left:50%; bottom:0;
+    transform:translateX(-50%) rotate(-45deg);
+    width:5px; height:5px; border:2px solid #fff; border-radius:50%;
+    border-bottom-color:transparent; border-left-color:transparent;
   }
   .wifi::after {
-    content: "";
-    position: absolute;
-    left: 50%; bottom: 1px;
-    transform: translateX(-50%);
-    width: 2.5px; height: 2.5px;
-    background: #fff;
-    border-radius: 50%;
+    content:""; position:absolute; left:50%; bottom:1px;
+    transform:translateX(-50%); width:2.5px; height:2.5px;
+    background:#fff; border-radius:50%;
   }
 
-  /* 배터리 */
   .battery {
-    width: 23px;
-    height: 10.5px;
-    border: 1.4px solid #fff;
-    border-radius: 2.5px;
-    padding: 1.3px;
-    position: relative;
+    width:23px; height:10.5px; border:1.4px solid #fff;
+    border-radius:2.5px; padding:1.3px; position:relative;
   }
   .battery::after {
-    content: "";
-    position: absolute;
-    right: -3.5px;
-    top: 2.8px;
-    width: 1.8px;
-    height: 4.5px;
-    background: #fff;
-    border-radius: 0 1px 1px 0;
+    content:""; position:absolute; right:-3.5px; top:2.8px;
+    width:1.8px; height:4.5px; background:#fff; border-radius:0 1px 1px 0;
   }
-  .battery-level {
-    height: 100%;
-    width: 75%;
-    background: #fff;
-    border-radius: 1px;
-  }
+  .battery-level { height:100%; width:75%; background:#fff; border-radius:1px; }
 
   .screens { position: absolute; inset: 0; }
 
-  /* ===== 잠금화면 ===== */
+  /* 잠금화면 */
   .lockscreen {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background: url('IMG_5280.jpeg') center/cover no-repeat;
     color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: flex; flex-direction: column; align-items: center;
     padding-top: 118px;
     text-shadow: 0 2px 10px rgba(0,0,0,0.4);
     transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
-  .lockscreen.hide {
-    transform: translateY(-110%);
-  }
+  .lockscreen.hide { transform: translateY(-110%); }
 
-  .lock-time {
-    font-size: 86px;
-    font-weight: 300;
-    letter-spacing: -2.5px;
-    line-height: 1;
-  }
-
-  .lock-date {
-    font-size: 19px;
-    font-weight: 500;
-    margin-top: 5px;
-  }
-
+  .lock-time { font-size: 86px; font-weight: 300; letter-spacing: -2.5px; line-height: 1; }
+  .lock-date { font-size: 19px; font-weight: 500; margin-top: 5px; }
   .dday {
-    margin-top: 13px;
-    font-size: 14.5px;
-    font-weight: 600;
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 4px 13px;
-    border-radius: 20px;
+    margin-top: 13px; font-size: 14.5px; font-weight: 600;
+    background: rgba(0,0,0,0.3); backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); padding: 4px 13px; border-radius: 20px;
   }
+  .lock-bottom { position: absolute; bottom: 46px; font-size: 13.5px; font-weight: 500; opacity: 0.85; }
 
-  .lock-bottom {
-    position: absolute;
-    bottom: 46px;
-    font-size: 13.5px;
-    font-weight: 500;
-    opacity: 0.85;
-  }
-
-  /* ===== 비밀번호 ===== */
+  /* 비밀번호 */
   .passcode {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
-    backdrop-filter: blur(25px);
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.55); backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    z-index: 40;
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    color: #fff; z-index: 40;
   }
   .passcode.show { display: flex; }
-
-  .passcode-title {
-    font-size: 16.5px;
-    margin-bottom: 26px;
-  }
-
-  .dots {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 36px;
-    transition: transform 0.15s;
-  }
-  .dots span {
-    width: 12px;
-    height: 12px;
-    border: 1.7px solid #fff;
-    border-radius: 50%;
-  }
-  .dots span.fill {
-    background: #fff;
-  }
-
-  .keypad {
-    display: grid;
-    grid-template-columns: repeat(3, 76px);
-    gap: 15px 20px;
-  }
+  .passcode-title { font-size: 16.5px; margin-bottom: 26px; }
+  .dots { display: flex; gap: 16px; margin-bottom: 36px; transition: transform 0.15s; }
+  .dots span { width: 12px; height: 12px; border: 1.7px solid #fff; border-radius: 50%; }
+  .dots span.fill { background: #fff; }
+  .keypad { display: grid; grid-template-columns: repeat(3, 76px); gap: 15px 20px; }
   .keypad button {
-    width: 76px;
-    height: 76px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.17);
-    color: #fff;
-    font-size: 30px;
-    border: none;
+    width: 76px; height: 76px; border-radius: 50%;
+    background: rgba(255,255,255,0.17); color: #fff; font-size: 30px; border: none;
   }
-  .keypad button:active {
-    background: rgba(255,255,255,0.32);
-  }
+  .keypad button:active { background: rgba(255,255,255,0.32); }
 
+  /* ===== 홈화면 ===== */
   .home {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background: url('IMG_5280.jpeg') center/cover no-repeat;
     display: none;
+    padding-top: 70px;
   }
   .home.show { display: block; }
 
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px 12px;
+    padding: 20px 22px 0;
+  }
+
+  .app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .app-icon {
+    width: 62px;
+    height: 62px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    overflow: hidden;
+  }
+
+  .app-name {
+    font-size: 11px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    font-weight: 500;
+    text-align: center;
+  }
+
+  /* 앱 색상 */
+  .kakao   { background: #FEE500; color: #3C1E1E; font-size: 26px; font-weight: 800; }
+  .insta   { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+  .phone   { background: #34C759; }
+  .message { background: #34C759; }
+  .camera  { background: #8E8E93; }
+  .calendar{ background: #FFFFFF; color: #FF3B30; flex-direction: column; font-size: 11px; }
+  .theday  { background: linear-gradient(135deg, #FF6B9D, #C44569); }
+
+  .calendar .cal-day { font-size: 10px; color: #FF3B30; font-weight: 600; margin-top: 6px; }
+  .calendar .cal-date { font-size: 26px; font-weight: 300; color: #000; line-height: 1; }
+
   .homebar {
-    position: absolute;
-    bottom: 9px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 130px;
-    height: 5px;
-    background: #fff;
-    border-radius: 3px;
-    z-index: 30;
+    position: absolute; bottom: 9px; left: 50%;
+    transform: translateX(-50%); width: 130px; height: 5px;
+    background: #fff; border-radius: 3px; z-index: 30;
   }
 </style>
 </head>
@@ -276,7 +207,44 @@
     </div>
 
     <!-- 홈화면 -->
-    <div class="home" id="home"></div>
+    <div class="home" id="home">
+      <div class="app-grid">
+        <!-- 1행 -->
+        <div class="app">
+          <div class="app-icon kakao">T</div>
+          <div class="app-name">카카오톡</div>
+        </div>
+        <div class="app">
+          <div class="app-icon insta">📷</div>
+          <div class="app-name">인스타</div>
+        </div>
+        <div class="app">
+          <div class="app-icon phone">📞</div>
+          <div class="app-name">전화</div>
+        </div>
+        <div class="app">
+          <div class="app-icon message">💬</div>
+          <div class="app-name">메시지</div>
+        </div>
+
+        <!-- 2행 -->
+        <div class="app">
+          <div class="app-icon camera">📸</div>
+          <div class="app-name">카메라</div>
+        </div>
+        <div class="app">
+          <div class="app-icon calendar">
+            <div class="cal-day" id="calDay">토</div>
+            <div class="cal-date" id="calDate">24</div>
+          </div>
+          <div class="app-name">캘린더</div>
+        </div>
+        <div class="app">
+          <div class="app-icon theday">♡</div>
+          <div class="app-name">TheDayBefore</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="homebar"></div>
@@ -298,8 +266,13 @@
     document.getElementById("sbTime").textContent = `${h}:${m}`;
 
     const days = ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"];
+    const shortDays = ["일","월","화","수","목","금","토"];
     document.getElementById("date").textContent = 
       `${now.getMonth()+1}월 ${now.getDate()}일 ${days[now.getDay()]}`;
+
+    // 캘린더 아이콘 날짜 업데이트
+    document.getElementById("calDay").textContent = shortDays[now.getDay()];
+    document.getElementById("calDate").textContent = now.getDate();
   }
 
   function updateDday() {
@@ -329,7 +302,6 @@
     }
   });
 
-  // PC용
   let mouseY = 0;
   lock.addEventListener("mousedown", e => mouseY = e.clientY);
   lock.addEventListener("mouseup", e => {
