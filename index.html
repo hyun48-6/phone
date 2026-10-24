@@ -2,87 +2,352 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>핸드폰 틀 테스트</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>iPhone</title>
 <style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    margin: 0;
-    background: #f0f0f0;
+    background: #111;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    font-family: -apple-system, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", sans-serif;
   }
 
   .device {
     position: relative;
     width: 390px;
     height: 844px;
-    border-radius: 54px;
+    border-radius: 55px;
     overflow: hidden;
     background: #000;
     box-shadow:
-      0 0 0 11px #1b1b1d,
-      0 0 0 13px #3a3a3e,
-      0 40px 80px rgba(0,0,0,.5);
+      0 0 0 12px #1c1c1e,
+      0 0 0 14px #3a3a3c,
+      0 40px 80px rgba(0,0,0,0.6);
   }
 
+  /* 상태바 */
   .statusbar {
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 50px;
+    height: 54px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 0 28px 0 36px;
+    align-items: flex-end;
+    padding: 0 28px 10px 32px;
     color: #fff;
     font-weight: 600;
-    font-size: 16px;
-    z-index: 10;
+    font-size: 15px;
+    z-index: 30;
+  }
+  .sb-icons {
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 
-  .screens {
-  position: absolute;
-  inset: 0;
-  background: url('IMG_5280.jpeg') center/cover no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #888;
-  font-size: 18px;
-}
+  .screens { position: absolute; inset: 0; }
+
+  /* 잠금화면 */
+  .lockscreen {
+    position: absolute;
+    inset: 0;
+    background: url('IMG_5280.jpeg') center/cover no-repeat;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 120px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+    transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  .lockscreen.hide {
+    transform: translateY(-110%);
+  }
+
+  .lock-time {
+    font-size: 88px;
+    font-weight: 300;
+    letter-spacing: -3px;
+    line-height: 1;
+  }
+
+  .lock-date {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 6px;
+    opacity: 0.95;
+  }
+
+  .dday {
+    margin-top: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    opacity: 0.9;
+    background: rgba(0,0,0,0.28);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 5px 14px;
+    border-radius: 20px;
+  }
+
+  .lock-bottom {
+    position: absolute;
+    bottom: 48px;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.85;
+    letter-spacing: 0.3px;
+  }
+
+  /* 비밀번호 화면 */
+  .passcode {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    z-index: 20;
+  }
+  .passcode.show { display: flex; }
+
+  .passcode-title {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+
+  .dots {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 40px;
+  }
+  .dots span {
+    width: 13px;
+    height: 13px;
+    border: 1.8px solid #fff;
+    border-radius: 50%;
+    transition: background 0.15s;
+  }
+  .dots span.fill {
+    background: #fff;
+  }
+
+  .keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 78px);
+    gap: 16px 22px;
+  }
+  .keypad button {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    font-size: 32px;
+    font-weight: 400;
+    border: none;
+    cursor: pointer;
+  }
+  .keypad button:active {
+    background: rgba(255,255,255,0.35);
+  }
+
+  /* 홈 화면 (잠금 해제 후) */
+  .home {
+    position: absolute;
+    inset: 0;
+    background: url('IMG_5280.jpeg') center/cover no-repeat;
+    display: none;
+  }
+  .home.show { display: block; }
 
   .homebar {
     position: absolute;
-    bottom: 0; left: 50%;
+    bottom: 10px;
+    left: 50%;
     transform: translateX(-50%);
-    width: 220px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding-bottom: 8px;
-  }
-
-  .homebar i {
-    width: 136px;
+    width: 134px;
     height: 5px;
-    background: #111;
+    background: #fff;
     border-radius: 3px;
+    opacity: 0.9;
+    z-index: 25;
   }
 </style>
 </head>
 <body>
 
-  <div class="device">
-    <div class="statusbar">
-      <span>11:59</span>
+<div class="device">
+  <!-- 상태바 -->
+  <div class="statusbar">
+    <span id="sbTime">--:--</span>
+    <div class="sb-icons">
+      <span>📶</span>
       <span>🔋</span>
     </div>
-    <div class="screens">여기가 화면 영역입니다</div>
-    <div class="homebar"><i></i></div>
   </div>
 
+  <div class="screens">
+    <!-- 잠금화면 -->
+    <div class="lockscreen" id="lockscreen">
+      <div class="lock-time" id="time">--:--</div>
+      <div class="lock-date" id="date">--월 --일 ---</div>
+      <div class="dday" id="dday">D+0</div>
+      <div class="lock-bottom">위로 밀어서 잠금 해제</div>
+    </div>
+
+    <!-- 비밀번호 입력 -->
+    <div class="passcode" id="passcode">
+      <div class="passcode-title">암호 입력</div>
+      <div class="dots" id="dots">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <div class="keypad" id="keypad"></div>
+    </div>
+
+    <!-- 홈 화면 -->
+    <div class="home" id="home"></div>
+  </div>
+
+  <div class="homebar"></div>
+</div>
+
+<script>
+  const PASSWORD = "0501";
+  const BASE_DATE = "2025-05-01"; // 이 날짜를 1일로 설정
+
+  // 대한민국 시간으로 현재 시각 가져오기
+  function getKoreaTime() {
+    return new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Seoul" }));
+  }
+
+  // 시간 & 날짜 업데이트
+  function updateTime() {
+    const now = getKoreaTime();
+    const h = String(now.getHours()).padStart(2, "0");
+    const m = String(now.getMinutes()).padStart(2, "0");
+    
+    document.getElementById("time").textContent = `${h}:${m}`;
+    document.getElementById("sbTime").textContent = `${h}:${m}`;
+
+    const days = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+    const month = now.getMonth() + 1;
+    const date = now.getDate();
+    document.getElementById("date").textContent = `${month}월 ${date}일 ${days[now.getDay()]}`;
+  }
+
+  // 디데이 계산 (2025-05-01을 1일로)
+  function updateDday() {
+    const base = new Date(BASE_DATE + "T00:00:00+09:00");
+    const today = getKoreaTime();
+    
+    // 날짜만 비교하기 위해 시간 제거
+    const baseDay = new Date(base.getFullYear(), base.getMonth(), base.getDate());
+    const todayDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    
+    const diffTime = todayDay - baseDay;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    
+    const el = document.getElementById("dday");
+    
+    // 2025-05-01을 1일로 설정 → 그날은 D+0 또는 "1일"로 표현 가능
+    // 보통 D-Day 방식으로 표시
+    if (diffDays === 0) {
+      el.textContent = "D-Day";
+    } else if (diffDays > 0) {
+      el.textContent = `D+${diffDays}`;
+    } else {
+      el.textContent = `D${diffDays}`;
+    }
+  }
+
+  updateTime();
+  updateDday();
+  setInterval(updateTime, 1000);
+
+  // 위로 밀기 (스와이프)
+  let startY = 0;
+  const lock = document.getElementById("lockscreen");
+
+  lock.addEventListener("touchstart", e => {
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  lock.addEventListener("touchend", e => {
+    const endY = e.changedTouches[0].clientY;
+    if (startY - endY > 70) {
+      document.getElementById("passcode").classList.add("show");
+    }
+  });
+
+  // 마우스 드래그도 지원 (PC 테스트용)
+  let mouseStartY = 0;
+  lock.addEventListener("mousedown", e => mouseStartY = e.clientY);
+  lock.addEventListener("mouseup", e => {
+    if (mouseStartY - e.clientY > 70) {
+      document.getElementById("passcode").classList.add("show");
+    }
+  });
+
+  // 비밀번호 키패드 생성
+  const keypad = document.getElementById("keypad");
+  let input = "";
+
+  // 1~9
+  for (let i = 1; i <= 9; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    btn.onclick = () => press(String(i));
+    keypad.appendChild(btn);
+  }
+  // 빈칸 + 0 + 빈칸
+  keypad.appendChild(document.createElement("div")); // 빈 공간
+  const zero = document.createElement("button");
+  zero.textContent = "0";
+  zero.onclick = () => press("0");
+  keypad.appendChild(zero);
+  keypad.appendChild(document.createElement("div"));
+
+  function press(n) {
+    if (input.length >= 4) return;
+    input += n;
+    updateDots();
+
+    if (input.length === 4) {
+      setTimeout(() => {
+        if (input === PASSWORD) {
+          // 성공
+          document.getElementById("passcode").classList.remove("show");
+          lock.classList.add("hide");
+          document.getElementById("home").classList.add("show");
+        } else {
+          // 실패
+          input = "";
+          updateDots();
+          // 살짝 흔들림 효과
+          const dots = document.getElementById("dots");
+          dots.style.transform = "translateX(-8px)";
+          setTimeout(() => dots.style.transform = "translateX(8px)", 80);
+          setTimeout(() => dots.style.transform = "translateX(0)", 160);
+        }
+      }, 180);
+    }
+  }
+
+  function updateDots() {
+    const dots = document.querySelectorAll("#dots span");
+    dots.forEach((d, i) => {
+      d.classList.toggle("fill", i < input.length);
+    });
+  }
+</script>
 </body>
 </html>
